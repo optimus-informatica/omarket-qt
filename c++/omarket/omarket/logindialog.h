@@ -2,6 +2,8 @@
 #define LOGINDIALOG_H
 
 #include <QDialog>
+#include <QtCore>
+#include "usuarios.h"
 
 namespace Ui {
 class LoginDialog;
@@ -17,6 +19,7 @@ public:
 
 private:
     Ui::LoginDialog *ui;
+    Usuarios *usuarios;
 
 private slots:
     void logon();

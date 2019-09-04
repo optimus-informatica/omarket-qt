@@ -8,10 +8,11 @@ MainFrame::MainFrame(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainFram
     connect(loginDialog, &LoginDialog::accepted, this, &MainFrame::logonAccept);
     connect(loginDialog, &LoginDialog::rejected, this, &MainFrame::logonReject);
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
     db.setHostName("localhost");
-    db.setPort(3306);
+    db.setPort(5432);
     db.setUserName("omarket");
+    db.setDatabaseName("o_market");
 
     if (!db.open()) {
         qDebug() << db.lastError();

@@ -1,0 +1,1 @@
+﻿select count(*) c, usuarioid, isadmin, iscaixa, isfinanceiro, issystem, isrh from usuarios inner join usuarios_perms using (usuarioid)  group by usuarioid, isadmin, iscaixa, isfinanceiro, issystem, isrh;

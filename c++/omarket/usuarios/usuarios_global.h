@@ -1,0 +1,12 @@
+#ifndef USUARIOS_GLOBAL_H
+#define USUARIOS_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(USUARIOS_LIBRARY)
+#  define USUARIOSSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define USUARIOSSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // USUARIOS_GLOBAL_H

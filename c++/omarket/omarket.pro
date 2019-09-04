@@ -1,4 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    omarket
+    omarket \
+    usuarios
+
+omarket.depends = usuarios
