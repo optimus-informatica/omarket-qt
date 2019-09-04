@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>64/cart.png</file>
+        <file>64/cesta.png</file>
+        <file>128/cart.png</file>
+        <file>128/cesta.png</file>
+    </qresource>
+</RCC>
