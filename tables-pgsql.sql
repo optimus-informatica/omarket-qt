@@ -71,7 +71,7 @@ create or replace view v_produtos as select
     valor,
     custo,
     estoque,
-    date_format(p.registro, '%d/%m/%y %h:%i:%s') as f_date,
+    to_char(p.registro, 'dd/mm/yyyy HH24:MI:SS') as f_date,
     p.registro
 from
     produtos p
