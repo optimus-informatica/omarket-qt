@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
@@ -35,15 +36,17 @@ public:
     QLabel *label_3;
     QLineEdit *senha;
     QLabel *label_2;
+    QLabel *label_5;
+    QCheckBox *issave;
     QSpacerItem *verticalSpacer;
-    QLabel *label_4;
+    QLabel *logs;
 
     void setupUi(QDialog *LoginDialog)
     {
         if (LoginDialog->objectName().isEmpty())
             LoginDialog->setObjectName(QString::fromUtf8("LoginDialog"));
         LoginDialog->setWindowModality(Qt::WindowModal);
-        LoginDialog->resize(403, 203);
+        LoginDialog->resize(403, 241);
         LoginDialog->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "	font-size: 10pt;\n"
 "	font-weight: bold;\n"
@@ -92,6 +95,7 @@ public:
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
         usuario = new QLineEdit(LoginDialog);
         usuario->setObjectName(QString::fromUtf8("usuario"));
+        usuario->setMaxLength(25);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, usuario);
 
@@ -102,6 +106,8 @@ public:
 
         senha = new QLineEdit(LoginDialog);
         senha->setObjectName(QString::fromUtf8("senha"));
+        senha->setMaxLength(64);
+        senha->setEchoMode(QLineEdit::Password);
 
         formLayout->setWidget(1, QFormLayout::FieldRole, senha);
 
@@ -110,6 +116,16 @@ public:
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label_2);
 
+        label_5 = new QLabel(LoginDialog);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_5);
+
+        issave = new QCheckBox(LoginDialog);
+        issave->setObjectName(QString::fromUtf8("issave"));
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, issave);
+
 
         gridLayout_2->addLayout(formLayout, 1, 0, 1, 2);
 
@@ -117,10 +133,10 @@ public:
 
         gridLayout_2->addItem(verticalSpacer, 3, 1, 1, 1);
 
-        label_4 = new QLabel(LoginDialog);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
+        logs = new QLabel(LoginDialog);
+        logs->setObjectName(QString::fromUtf8("logs"));
 
-        gridLayout_2->addWidget(label_4, 2, 0, 1, 2);
+        gridLayout_2->addWidget(logs, 2, 0, 1, 2);
 
 
         retranslateUi(LoginDialog);
@@ -138,7 +154,9 @@ public:
         pushButton->setText(QCoreApplication::translate("LoginDialog", "Entrar", nullptr));
         label_3->setText(QCoreApplication::translate("LoginDialog", "Senha:", nullptr));
         label_2->setText(QCoreApplication::translate("LoginDialog", "Usu\303\241rio:", nullptr));
-        label_4->setText(QCoreApplication::translate("LoginDialog", "Efeue o login para acessar o sistema.", nullptr));
+        label_5->setText(QString());
+        issave->setText(QCoreApplication::translate("LoginDialog", "Lembrar usu\303\241rio e senha?", nullptr));
+        logs->setText(QCoreApplication::translate("LoginDialog", "Efeue o login para acessar o sistema.", nullptr));
     } // retranslateUi
 
 };

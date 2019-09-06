@@ -25,7 +25,7 @@ MainFrame::MainFrame(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainFram
 
     loginDialog->show();
     ui->tabs->clear();
-    ui->tabs->addTab(new CaixaForm(), "Caixa");
+    ui->tabs->addTab(new CaixaForm(settings), "Caixa");
 }
 
 MainFrame::~MainFrame()

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -29,19 +29,22 @@ SOURCES += \
         logindialog.cpp \
         main.cpp \
         mainframe.cpp \
-        produtosdialog.cpp
+        produtosdialog.cpp \
+        recibodialog.cpp
 
 HEADERS += \
         caixaform.h \
         logindialog.h \
         mainframe.h \
-        produtosdialog.h
+        produtosdialog.h \
+        recibodialog.h
 
 FORMS += \
         caixaform.ui \
         logindialog.ui \
         mainframe.ui \
-        produtosdialog.ui
+        produtosdialog.ui \
+        recibodialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

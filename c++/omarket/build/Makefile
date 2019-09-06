@@ -33,34 +33,88 @@ DISTNAME      = omarket1.0.0
 DISTDIR = /home/brasilio/sources/omarket-qt/c++/omarket/build/.tmp/omarket1.0.0
 SUBTARGETS    =  \
 		sub-omarket \
+		sub-produtos \
+		sub-recibos \
 		sub-usuarios
 
 
-sub-omarket-qmake_all: sub-usuarios-qmake_all FORCE
+sub-omarket-qmake_all: sub-usuarios-qmake_all sub-produtos-qmake_all sub-recibos-qmake_all FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 	cd omarket/ && $(MAKE) -f Makefile qmake_all
-sub-omarket: sub-usuarios FORCE
+sub-omarket: sub-usuarios \
+		sub-produtos \
+		sub-recibos FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile
-sub-omarket-make_first: sub-usuarios-make_first FORCE
+sub-omarket-make_first: sub-usuarios-make_first sub-produtos-make_first sub-recibos-make_first FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
-sub-omarket-all: sub-usuarios-all FORCE
+sub-omarket-all: sub-usuarios-all sub-produtos-all sub-recibos-all FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
-sub-omarket-clean: sub-usuarios-clean FORCE
+sub-omarket-clean: sub-usuarios-clean sub-produtos-clean sub-recibos-clean FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
-sub-omarket-distclean: sub-usuarios-distclean FORCE
+sub-omarket-distclean: sub-usuarios-distclean sub-produtos-distclean sub-recibos-distclean FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
-sub-omarket-install_subtargets: sub-usuarios-install_subtargets FORCE
+sub-omarket-install_subtargets: sub-usuarios-install_subtargets sub-produtos-install_subtargets sub-recibos-install_subtargets FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
-sub-omarket-uninstall_subtargets: sub-usuarios-uninstall_subtargets FORCE
+sub-omarket-uninstall_subtargets: sub-usuarios-uninstall_subtargets sub-produtos-uninstall_subtargets sub-recibos-uninstall_subtargets FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+sub-produtos-qmake_all:  FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
+	cd produtos/ && $(MAKE) -f Makefile qmake_all
+sub-produtos: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile
+sub-produtos-make_first: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+sub-produtos-all: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+sub-produtos-clean: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+sub-produtos-distclean: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+sub-produtos-install_subtargets: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+sub-produtos-uninstall_subtargets: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
+sub-recibos-qmake_all:  FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
+	cd recibos/ && $(MAKE) -f Makefile qmake_all
+sub-recibos: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile
+sub-recibos-make_first: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile 
+sub-recibos-all: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile all
+sub-recibos-clean: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile clean
+sub-recibos-distclean: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile distclean
+sub-recibos-install_subtargets: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile install
+sub-recibos-uninstall_subtargets: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile uninstall
 sub-usuarios-qmake_all:  FORCE
 	@test -d usuarios/ || mkdir -p usuarios/
 	cd usuarios/ && $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/usuarios/usuarios.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
@@ -433,32 +487,44 @@ Makefile: ../omarket.pro /opt/Qt/5.13.0/gcc_64/mkspecs/linux-g++/qmake.conf /opt
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
-qmake_all: sub-omarket-qmake_all sub-usuarios-qmake_all FORCE
+qmake_all: sub-omarket-qmake_all sub-produtos-qmake_all sub-recibos-qmake_all sub-usuarios-qmake_all FORCE
 
-make_first: sub-omarket-make_first sub-usuarios-make_first  FORCE
-all: sub-omarket-all sub-usuarios-all  FORCE
-clean: sub-omarket-clean sub-usuarios-clean  FORCE
-distclean: sub-omarket-distclean sub-usuarios-distclean  FORCE
+make_first: sub-omarket-make_first sub-produtos-make_first sub-recibos-make_first sub-usuarios-make_first  FORCE
+all: sub-omarket-all sub-produtos-all sub-recibos-all sub-usuarios-all  FORCE
+clean: sub-omarket-clean sub-produtos-clean sub-recibos-clean sub-usuarios-clean  FORCE
+distclean: sub-omarket-distclean sub-produtos-distclean sub-recibos-distclean sub-usuarios-distclean  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash
-install_subtargets: sub-omarket-install_subtargets sub-usuarios-install_subtargets FORCE
-uninstall_subtargets: sub-omarket-uninstall_subtargets sub-usuarios-uninstall_subtargets FORCE
+install_subtargets: sub-omarket-install_subtargets sub-produtos-install_subtargets sub-recibos-install_subtargets sub-usuarios-install_subtargets FORCE
+uninstall_subtargets: sub-omarket-uninstall_subtargets sub-produtos-uninstall_subtargets sub-recibos-uninstall_subtargets sub-usuarios-uninstall_subtargets FORCE
 
-sub-omarket-check: sub-usuarios-check
+sub-omarket-check: sub-usuarios-check sub-produtos-check sub-recibos-check
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile check
+sub-produtos-check:
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile check
+sub-recibos-check:
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile check
 sub-usuarios-check:
 	@test -d usuarios/ || mkdir -p usuarios/
 	cd usuarios/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/usuarios/usuarios.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile check
-check: sub-omarket-check sub-usuarios-check
+check: sub-omarket-check sub-produtos-check sub-recibos-check sub-usuarios-check
 
-sub-omarket-benchmark: sub-usuarios-benchmark
+sub-omarket-benchmark: sub-usuarios-benchmark sub-produtos-benchmark sub-recibos-benchmark
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile benchmark
+sub-produtos-benchmark:
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile benchmark
+sub-recibos-benchmark:
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile benchmark
 sub-usuarios-benchmark:
 	@test -d usuarios/ || mkdir -p usuarios/
 	cd usuarios/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/usuarios/usuarios.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-omarket-benchmark sub-usuarios-benchmark
+benchmark: sub-omarket-benchmark sub-produtos-benchmark sub-recibos-benchmark sub-usuarios-benchmark
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE
@@ -468,13 +534,21 @@ FORCE:
 dist: distdir FORCE
 	(cd `dirname $(DISTDIR)` && $(TAR) $(DISTNAME).tar $(DISTNAME) && $(COMPRESS) $(DISTNAME).tar) && $(MOVE) `dirname $(DISTDIR)`/$(DISTNAME).tar.gz . && $(DEL_FILE) -r $(DISTDIR)
 
-distdir: sub-omarket-distdir sub-usuarios-distdir FORCE
+distdir: sub-omarket-distdir sub-produtos-distdir sub-recibos-distdir sub-usuarios-distdir FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents /opt/Qt/5.13.0/gcc_64/mkspecs/features/spec_pre.prf /opt/Qt/5.13.0/gcc_64/mkspecs/common/unix.conf /opt/Qt/5.13.0/gcc_64/mkspecs/common/linux.conf /opt/Qt/5.13.0/gcc_64/mkspecs/common/sanitize.conf /opt/Qt/5.13.0/gcc_64/mkspecs/common/gcc-base.conf /opt/Qt/5.13.0/gcc_64/mkspecs/common/gcc-base-unix.conf /opt/Qt/5.13.0/gcc_64/mkspecs/common/g++-base.conf /opt/Qt/5.13.0/gcc_64/mkspecs/common/g++-unix.conf /opt/Qt/5.13.0/gcc_64/mkspecs/qconfig.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3danimation.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3danimation_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dcore.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dcore_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dextras.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dextras_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dinput.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dinput_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dlogic.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dlogic_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquick.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquick_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickanimation.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickextras.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickextras_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickinput.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickinput_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickrender.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickrender_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3drender.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_3drender_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_accessibility_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_bluetooth.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_bluetooth_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_bootstrap_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_charts.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_charts_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_concurrent.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_core.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_core_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_dbus.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_designer.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_designer_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_designercomponents_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_edid_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_egl_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_fb_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_gamepad.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_gamepad_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_glx_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_gui.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_gui_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_help.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_help_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_input_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_kms_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_location.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_location_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_multimedia.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_multimedia_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_multimediagsttools_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_network.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_network_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_nfc.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_nfc_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_opengl.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_opengl_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_openglextensions.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_openglextensions_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_packetprotocol_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_positioning.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_positioning_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_positioningquick.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_positioningquick_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_printsupport.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_printsupport_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_qml.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_qml_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_qmldebug_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_qmldevtools_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_qmltest.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_qmltest_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quick.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quick_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quickcontrols2.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quickparticles_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quickshapes_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quicktemplates2.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quickwidgets.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_quickwidgets_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_remoteobjects.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_remoteobjects_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_repparser.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_repparser_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_scxml.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_scxml_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_sensors.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_sensors_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_serialbus.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_serialbus_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_serialport.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_service_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_sql.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_sql_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_svg.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_svg_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_testlib.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_testlib_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_texttospeech.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_texttospeech_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_theme_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_uiplugin.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_uitools.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_uitools_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_vulkan_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_waylandclient.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_waylandclient_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_waylandcompositor.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_waylandcompositor_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_webchannel.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_webchannel_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_websockets.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_websockets_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_webview.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_webview_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_widgets.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_widgets_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_x11extras.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_x11extras_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_xkbcommon_support_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_xml.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_xml_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_xmlpatterns.pri /opt/Qt/5.13.0/gcc_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri /opt/Qt/5.13.0/gcc_64/mkspecs/features/qt_functions.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/qt_config.prf /opt/Qt/5.13.0/gcc_64/mkspecs/linux-g++/qmake.conf /opt/Qt/5.13.0/gcc_64/mkspecs/features/spec_post.prf .qmake.stash /opt/Qt/5.13.0/gcc_64/mkspecs/features/exclusive_builds.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/toolchain.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/default_pre.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/resolve_config.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/default_post.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/qml_debug.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/warn_on.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/qmake_use.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/file_copies.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/testcase_targets.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/exceptions.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/yacc.prf /opt/Qt/5.13.0/gcc_64/mkspecs/features/lex.prf ../omarket.pro $(DISTDIR)/
 
 sub-omarket-distdir: FORCE
 	@test -d omarket/ || mkdir -p omarket/
 	cd omarket/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/omarket/omarket.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/omarket
+
+sub-produtos-distdir: FORCE
+	@test -d produtos/ || mkdir -p produtos/
+	cd produtos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/produtos/produtos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/produtos
+
+sub-recibos-distdir: FORCE
+	@test -d recibos/ || mkdir -p recibos/
+	cd recibos/ && ( test -e Makefile || $(QMAKE) -o Makefile /home/brasilio/sources/omarket-qt/c++/omarket/recibos/recibos.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug ) && $(MAKE) -e -f Makefile distdir DISTDIR=$(DISTDIR)/recibos
 
 sub-usuarios-distdir: FORCE
 	@test -d usuarios/ || mkdir -p usuarios/

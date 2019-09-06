@@ -1,16 +1,23 @@
 #include "caixaform.h"
 #include "ui_caixaform.h"
 
-CaixaForm::CaixaForm(QWidget *parent) : QWidget(parent), ui(new Ui::CaixaForm)
+CaixaForm::CaixaForm(QSettings *settings, QWidget *parent) : QWidget(parent), ui(new Ui::CaixaForm)
 {
     ui->setupUi(this);
+    this->settings = settings;
     model = new ModelRecibo;
     connect(model, &ModelRecibo::produtoAdicionado, this, &CaixaForm::produtoAdicionado);
-    ui->tableView->setModel(model);
+    //ui->tableView->setModel(model);
+
+    recibos = new Recibos;
+    connect(recibos, &Recibos::errorReported, this, &CaixaForm::errorReport);
+
+    reciboid = QString();
 }
 
 CaixaForm::~CaixaForm()
 {
+    recibos->cancel(reciboid);
     delete ui;
 }
 
@@ -38,12 +45,31 @@ void CaixaForm::barcodeReaded()
 
 void CaixaForm::addItem()
 {
+    if (reciboid.isEmpty()) {
+        reciboid = recibos->start(settings->value("session/usuarioid", 0));
+        model->setId(reciboid);
+        ui->tableView->setModel(model);
+    }
     model->insertRows(ui->barcode->text(), ui->quantidade->value());
 }
 
 void CaixaForm::print()
 {
-    qDebug() << "PRINT";
+    /*
+    ui->tableView->setModel(model);
+    QPrinter printer;
+    QPrintDialog *d = new QPrintDialog(&printer);
+    if (d->exec() == QDialog::Accepted) {
+        QPainter painter;
+        painter.begin(&printer);
+        painter.drawText(10, 10, 302, 302, Qt::AlignCenter|Qt::AlignTop, "MINI MERCADO FONSECA");
+        painter.end();
+    }
+    //printer.setPrinterName("PERTO-PRINTER-TEC");
+    //printer.setPageSize(QPageSize::A0);*/
+
+    d_recibo = new ReciboDialog(this);
+    d_recibo->show();
 }
 
 void CaixaForm::changeQuantidade(double v)
@@ -74,4 +100,9 @@ void CaixaForm::calcular(double v)
 {
     double troco = v - ui->v_total->value();
     ui->troco->setValue(troco);
+}
+
+void CaixaForm::errorReport(QString err)
+{
+    qDebug() << err;
 }

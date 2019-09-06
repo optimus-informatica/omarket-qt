@@ -1,4 +1,4 @@
-drop table if exists usuarios;
+﻿drop table if exists usuarios;
 create table usuarios (
     usuarioid bigserial primary key,
     usuario varchar(25) not null,
@@ -77,3 +77,20 @@ from
     produtos p
 inner join produtos_tipos using(tipoid)
 inner join produtos_medidas using(medidaid);
+
+drop table if exists recibos;
+create table recibos (
+    reciboid uuid default uuid_generate_v4(),
+    usuarioid bigint not null,
+    s_date timestamp default current_timestamp,
+    e_date timestamp,
+    unique (reciboid, usuarioid)
+);
+
+drop table if exists recibos_items;
+create table recibos_items (
+    reciboid char(36) not null,
+    barcode varchar(25) not null,
+    custo numeric(10,2) not null,
+    valor numeric(10,2) not null
+);
