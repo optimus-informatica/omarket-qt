@@ -25,17 +25,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        caixaform.cpp \
         logindialog.cpp \
         main.cpp \
-        mainframe.cpp
+        mainframe.cpp \
+        produtosdialog.cpp
 
 HEADERS += \
+        caixaform.h \
         logindialog.h \
-        mainframe.h
+        mainframe.h \
+        produtosdialog.h
 
 FORMS += \
+        caixaform.ui \
         logindialog.ui \
-        mainframe.ui
+        mainframe.ui \
+        produtosdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -45,6 +51,23 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     omarket.qrc
 
-LIBS += "-L$$OUT_PWD/../lib -lomarketUsuarios"
-INCLUDEPATH += "$$PWD/../usuarios"
-DESTDIR = "$$OUT_PWD/../bin"
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../usuarios/release/ -lusuarios
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../usuarios/debug/ -lusuarios
+else:unix: LIBS += -L$$OUT_PWD/../usuarios/ -lusuarios
+
+INCLUDEPATH += $$PWD/../usuarios
+DEPENDPATH += $$PWD/../usuarios
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../produtos/release/ -lprodutos
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../produtos/debug/ -lprodutos
+else:unix: LIBS += -L$$OUT_PWD/../produtos/ -lprodutos
+
+INCLUDEPATH += $$PWD/../produtos
+DEPENDPATH += $$PWD/../produtos
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../recibos/release/ -lrecibos
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../recibos/debug/ -lrecibos
+else:unix: LIBS += -L$$OUT_PWD/../recibos/ -lrecibos
+
+INCLUDEPATH += $$PWD/../recibos
+DEPENDPATH += $$PWD/../recibos

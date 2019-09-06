@@ -4,5 +4,6 @@
         <file>64/cesta.png</file>
         <file>128/cart.png</file>
         <file>128/cesta.png</file>
+        <file>128/caixa.png</file>
     </qresource>
 </RCC>

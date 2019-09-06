@@ -1,4 +1,4 @@
-﻿drop table if exists usuarios;
+drop table if exists usuarios;
 create table usuarios (
     usuarioid bigserial primary key,
     usuario varchar(25) not null,
@@ -14,11 +14,11 @@ create table usuarios_perms (
    isadmin boolean default false,
    iscaixa boolean default true,
    isfinanceiro boolean default false,
-   isystem boolean default false,
+   issystem boolean default false,
    isrh boolean default false,
    unique (usuarioid)
 );
-insert into usuarios_perms (usuarioid, isadmin, iscaixa, isfinanceiro, isystem, isrh) values (1, true, true, true, true, true);
+insert into usuarios_perms (usuarioid, isadmin, iscaixa, isfinanceiro, issystem, isrh) values (1, true, true, true, true, true);
 
 drop table if exists produtos;
 create table produtos (

@@ -14,12 +14,13 @@ class LoginDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit LoginDialog(QWidget *parent = nullptr);
+    explicit LoginDialog(QSettings *settings, QWidget *parent = nullptr);
     ~LoginDialog();
 
 private:
     Ui::LoginDialog *ui;
     Usuarios *usuarios;
+    QSettings *settings;
 
 private slots:
     void logon();

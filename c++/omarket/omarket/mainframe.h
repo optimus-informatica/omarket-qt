@@ -8,6 +8,8 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <logindialog.h>
+#include <produtosdialog.h>
+#include <caixaform.h>
 
 namespace Ui {
 class MainFrame;
@@ -23,12 +25,15 @@ public:
 
 private:
     Ui::MainFrame *ui;
-    QSettings session;
     LoginDialog *loginDialog;
+    ProdutosDialog *produtosDialog;
+    CaixaForm *caixaForm;
+    QSettings *settings;
 
 private slots:
     void logonAccept();
     void logonReject();
+    void openProdutos();
 };
 
 #endif // MAINFRAME_H

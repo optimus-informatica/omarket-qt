@@ -1,10 +1,14 @@
 #include "logindialog.h"
 #include "ui_logindialog.h"
 
-LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent), ui(new Ui::LoginDialog)
+LoginDialog::LoginDialog(QSettings *settings, QWidget *parent) : QDialog(parent), ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
     usuarios = new Usuarios;
+    this->settings = settings;
+
+    ui->usuario->setText(settings->value("session/usuario", "").toString());
+    ui->senha->setText(settings->value("session/senha", "").toString());
 }
 
 LoginDialog::~LoginDialog()
@@ -16,11 +20,14 @@ LoginDialog::~LoginDialog()
 // SLOTS
 void LoginDialog::logon()
 {
-    QSettings session;
     QString usuario = ui->usuario->text();
     QString senha = ui->senha->text();
-    //if (!usuarios->logon(usuario, senha, &session)) {
-    //}
-    //qDebug() << session.value("usuarioid");
+    if (!usuarios->logon(usuario, senha, this->settings)) {
+        ui->logs->setText("Usuário ou senha inválido.");
+        return ;
+    }
+    if (ui->issave->isChecked()) {
+        settings->sync();
+    }
     accept();
 }

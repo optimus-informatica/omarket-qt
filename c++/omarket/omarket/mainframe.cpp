@@ -4,9 +4,6 @@
 MainFrame::MainFrame(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainFrame)
 {
     ui->setupUi(this);
-    loginDialog = new LoginDialog(this);
-    connect(loginDialog, &LoginDialog::accepted, this, &MainFrame::logonAccept);
-    connect(loginDialog, &LoginDialog::rejected, this, &MainFrame::logonReject);
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
     db.setHostName("localhost");
@@ -15,10 +12,20 @@ MainFrame::MainFrame(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainFram
     db.setDatabaseName("o_market");
 
     if (!db.open()) {
-        qDebug() << db.lastError();
+        qDebug() << " ERRO " << db.lastError();
     }
 
+    settings = new QSettings;
+    loginDialog = new LoginDialog(settings, this);
+    produtosDialog = new ProdutosDialog(this);
+
+    connect(loginDialog, &LoginDialog::accepted, this, &MainFrame::logonAccept);
+    connect(loginDialog, &LoginDialog::rejected, this, &MainFrame::logonReject);
+
+
     loginDialog->show();
+    ui->tabs->clear();
+    ui->tabs->addTab(new CaixaForm(), "Caixa");
 }
 
 MainFrame::~MainFrame()
@@ -29,10 +36,16 @@ MainFrame::~MainFrame()
 
 // SLOTS
 void MainFrame::logonAccept()
-{}
+{
+    qDebug() << settings->value("session/usuarioid");
+}
 
 void MainFrame::logonReject()
 {
-    qDebug() << "REJECT";
     this->close();
+}
+
+void MainFrame::openProdutos()
+{
+    produtosDialog->show();
 }

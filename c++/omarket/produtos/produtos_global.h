@@ -1,0 +1,12 @@
+#ifndef PRODUTOS_GLOBAL_H
+#define PRODUTOS_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(PRODUTOS_LIBRARY)
+#  define PRODUTOSSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define PRODUTOSSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PRODUTOS_GLOBAL_H

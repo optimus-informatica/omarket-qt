@@ -1,16 +1,19 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-09-04T10:03:36
+# Project created by QtCreator 2019-09-05T03:57:52
 #
 #-------------------------------------------------
 
 QT       += sql
+
 QT       -= gui
 
-TARGET = usuarios
+greaterThan(QT_MAJOR_VERSION, 4): QT += printsupport
+
+TARGET = recibos
 TEMPLATE = lib
 
-DEFINES += USUARIOS_LIBRARY
+DEFINES += RECIBOS_LIBRARY
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -24,17 +27,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        usuarios.cpp \
-        usuariosperms.cpp
+        modelrecibo.cpp \
+        recibos.cpp
 
 HEADERS += \
-        usuarios.h \
-        usuarios_global.h  \
-        usuariosperms.h
+        modelrecibo.h \
+        recibos.h \
+        recibos_global.h 
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
-
-# DESTDIR = "$$OUT_PWD/../bin"

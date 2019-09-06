@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>403</width>
-    <height>203</height>
+    <height>241</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -85,7 +85,11 @@ QLineEdit {
    <item row="1" column="0" colspan="2">
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="1">
-      <widget class="QLineEdit" name="usuario"/>
+      <widget class="QLineEdit" name="usuario">
+       <property name="maxLength">
+        <number>25</number>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_3">
@@ -95,12 +99,33 @@ QLineEdit {
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="senha"/>
+      <widget class="QLineEdit" name="senha">
+       <property name="maxLength">
+        <number>64</number>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Usuário:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QCheckBox" name="issave">
+       <property name="text">
+        <string>Lembrar usuário e senha?</string>
        </property>
       </widget>
      </item>
@@ -120,7 +145,7 @@ QLineEdit {
     </spacer>
    </item>
    <item row="2" column="0" colspan="2">
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="logs">
      <property name="text">
       <string>Efeue o login para acessar o sistema.</string>
      </property>

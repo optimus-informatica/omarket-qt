@@ -6,13 +6,20 @@ Usuarios::Usuarios(QObject *parent) : QObject (parent)
 
 bool Usuarios::logon(QString usuario, QString senha, QSettings *session)
 {
-    QString sql = "select count(*) c, usuarioid, isadmin, iscaixa, isfinanceiro, issystem, isrh from usuarios inner join usuarios_perms using (usuarioid) where usuario=? and senha=encode(digest(?, 'sha256') group by usuarioid, isadmin, iscaixa, isfinanceiro, issystem, isrh";
+    QString sql;
+    if (senha.length() == 64) {
+        sql = "select senha=:pass as logon, usuarioid, isadmin, iscaixa, isfinanceiro, issystem, isrh, usuario, senha from usuarios inner join usuarios_perms using (usuarioid) where usuario=:user";
+    }
+    else {
+        sql = "select senha=encode(digest(:pass, 'sha256'), 'hex') logon, usuarioid, isadmin, iscaixa, isfinanceiro, issystem, isrh, usuario, senha from usuarios inner join usuarios_perms using (usuarioid) where usuario=:user";
+    }
     QSqlQuery q;
     q.prepare(sql);
-    q.bindValue(0, usuario);
-    q.bindValue(1, senha);
+    q.bindValue(":user", usuario);
+    q.bindValue(":pass", senha);
 
     if (!q.exec()) {
+        qDebug() << q.lastError();
         return false;
     }
 
@@ -20,14 +27,19 @@ bool Usuarios::logon(QString usuario, QString senha, QSettings *session)
         return false;
     }
 
-    if (q.value("c").toInt() == 0) {
+    if (!q.value("logon").toBool()) {
         return false;
     }
-    session->setValue("usuarioid", q.value("usuarioid"));
-    session->setValue("isadmin", q.value("isadmin"));
-    session->setValue("iscaixa", q.value("iscaixa"));
-    session->setValue("isfinanceiro", q.value("isfinanceiro"));
-    session->setValue("issystem", q.value("issystem"));
-    session->setValue("isrh", q.value("isrh"));
+    session->setValue("session/usuarioid", q.value("usuarioid"));
+    session->setValue("session/isadmin", q.value("isadmin"));
+    session->setValue("session/iscaixa", q.value("iscaixa"));
+    session->setValue("session/isfinanceiro", q.value("isfinanceiro"));
+    session->setValue("session/issystem", q.value("issystem"));
+    session->setValue("session/isrh", q.value("isrh"));
+    session->setValue("session/usuario", q.value("usuario"));
+    session->setValue("session/senha", q.value("senha"));
     return true;
 }
+
+Usuarios::~Usuarios()
+{}
