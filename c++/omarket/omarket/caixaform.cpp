@@ -9,7 +9,7 @@ CaixaForm::CaixaForm(QSettings *settings, QWidget *parent) : QWidget(parent), ui
     connect(model, &ModelRecibo::produtoAdicionado, this, &CaixaForm::produtoAdicionado);
     //ui->tableView->setModel(model);
 
-    recibos = new Recibos;
+    recibos = new Recibos(settings);
     connect(recibos, &Recibos::errorReported, this, &CaixaForm::errorReport);
 
     reciboid = QString();
@@ -55,21 +55,18 @@ void CaixaForm::addItem()
 
 void CaixaForm::print()
 {
-    /*
-    ui->tableView->setModel(model);
-    QPrinter printer;
-    QPrintDialog *d = new QPrintDialog(&printer);
-    if (d->exec() == QDialog::Accepted) {
-        QPainter painter;
-        painter.begin(&printer);
-        painter.drawText(10, 10, 302, 302, Qt::AlignCenter|Qt::AlignTop, "MINI MERCADO FONSECA");
-        painter.end();
-    }
-    //printer.setPrinterName("PERTO-PRINTER-TEC");
-    //printer.setPageSize(QPageSize::A0);*/
+    recibos->end(reciboid);
+    QString file = recibos->getTextPlain(reciboid);
+    QStringList args;
+    args.append("-d");
+    args.append(settings->value("print/name").toString());
+    args.append(file);
 
-    d_recibo = new ReciboDialog(this);
-    d_recibo->show();
+    QProcess *p = new QProcess;
+    p->start("lp", args);
+
+    reciboid = QString();
+    model->clear();
 }
 
 void CaixaForm::changeQuantidade(double v)

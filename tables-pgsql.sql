@@ -89,8 +89,24 @@ create table recibos (
 
 drop table if exists recibos_items;
 create table recibos_items (
-    reciboid char(36) not null,
+    reciboid uuid not null,
     barcode varchar(25) not null,
+    quantidade numeric(10,2) not null,
     custo numeric(10,2) not null,
     valor numeric(10,2) not null
 );
+
+create or replace view v_recibos_items as select
+    produtoid,
+    produto || ' ' || tipo as produto,
+    medida,
+    r.valor,
+    quantidade,
+    r.valor * quantidade as total,
+    to_char(e_date, 'dd/mm/yyyy HH24:MI:SS') as f_date,
+    r.reciboid
+from recibos_items r
+    inner join recibos using(reciboid)
+    inner join produtos using(barcode)
+    inner join produtos_tipos using(tipoid)
+    inner join produtos_medidas using(medidaid);

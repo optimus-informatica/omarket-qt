@@ -20,6 +20,8 @@ public:
 
 private:
     Ui::ReciboDialog *ui;
+    QString jcenter(QString t);
+    QString hl();
 
 private slots:
     void print();

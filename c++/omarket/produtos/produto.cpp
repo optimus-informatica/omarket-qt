@@ -21,13 +21,13 @@ Produto::Produto(QObject *parent) : QAbstractTableModel(parent)
 
 int Produto::rowCount(const QModelIndex &parent) const
 {
-    Q_UNUSED(parent);
+    Q_UNUSED(parent)
     return r_data.size();
 }
 
 int Produto::columnCount(const QModelIndex &index) const
 {
-    Q_UNUSED(index);
+    Q_UNUSED(index)
     return c_data.size();
 }
 
@@ -86,4 +86,5 @@ bool Produto::insertRows(QString barcode)
     }
     r_data.append(list);
     emit endInsertRows();
+    return true;
 }

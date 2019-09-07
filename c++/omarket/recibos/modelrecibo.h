@@ -19,6 +19,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     bool insertRows(int position, int row, const QModelIndex &index = QModelIndex());
     bool insertRows(QString barcode, double quantidade);
+    void clear();
 
 private:
     QStringList c_data;

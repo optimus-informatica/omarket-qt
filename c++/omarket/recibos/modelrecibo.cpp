@@ -95,13 +95,21 @@ bool ModelRecibo::insertRows(QString barcode, double qtd)
     return true;
 }
 
+void ModelRecibo::clear()
+{
+    beginResetModel();
+    r_data.clear();
+    endResetModel();
+}
+
 void ModelRecibo::sqlInsertRow(QVariantList data)
 {
     QSqlQuery q;
-    QString sql = "insert into recibos_items values (:id, :barcode, :custo, :valor)";
+    QString sql = "insert into recibos_items values (:id, :barcode, :qtd, :custo, :valor)";
     q.prepare(sql);
     q.bindValue(":id", id);
     q.bindValue(":barcode", data[0]);
+    q.bindValue(":qtd", data[2]);
     q.bindValue(":custo", data[5]);
     q.bindValue(":valor", data[3]);
     if (!q.exec()) {
